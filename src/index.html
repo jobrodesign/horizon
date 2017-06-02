@@ -1,0 +1,31 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <script src="/horizon/horizon.js"></script>
+    <script>
+      var horizon = Horizon();
+      horizon.onReady(function() {
+        document.querySelector('h1').innerHTML = 'horizon works!'
+      });
+      horizon.connect();
+    </script>
+  </head>
+  <body>
+   <marquee direction="left"><h1></h1></marquee>
+
+   <script>
+     const chat = horizon("messages");
+
+     let message = {
+      text: "What a beautiful horizon!",
+      datetime: new Date(),
+      author: "@jobrodesign"
+     }
+
+     chat.store(message);
+
+     chat.order("datetime").watch().subscribe((docs) => { console.log(docs)  })
+   </script>
+  </body>
+</html>
